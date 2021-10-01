@@ -50,7 +50,7 @@ script TEXT NOT NULL
 
 ### Database Sample Output
 
-**titan_repo**
+** titan_repo **
 |uuid|script_name|script                                        |
 |----|-----------|----------------------------------------------|
 |1   |list       |ls -ltr                                       |
@@ -58,7 +58,7 @@ script TEXT NOT NULL
 |3   |username   |id -F                                         |
 |4   |ip         |ifconfig en0 | grep 'inet ' | awk '{print $2}'|
 
-**titan_status**
+** titan_status **
 |uuid|script_uuid|run_timestamp      |script_name|script_status|
 |----|-----------|-------------------|-----------|-------------|
 |1   |   6       |2021-10-01 07:12:39|disk       |Completed    |
