@@ -84,10 +84,18 @@ We will needs to create a virtualenv, activate the environment, install all the 
 > This will launch the application on port 5002 and can be accessed at http://127.0.0.1:5002
 
 ## Methods to access Titan service
-/
+The Flask application can be accessed from browser or from commandline using curl or wget module.
+Assuming this `curl` will be used, below are couple of commands to be used:
+- `curl http://127.0.0.1:5002/` : This will display the landing/home page.
+- `curl http://127.0.0.1:5002/scripts/` : This will list all the scripts present in the DB currently.
+- `curl http://127.0.0.1:5002/scripts/list/` : This will return ***list*** script information.
+- `curl --header "Content-Type: application/json" --request POST --data '{ "script_name": "list", "script_value": "ls -ltr" }' http://localhost:5002/scripts/post/` : This will post new script and update the database.
 
+    Input data is provided as json. Example: `{ "script_name": "disk", "script_value": "df -h" }`
+- `curl http://127.0.0.1:5002/scripts/run/list/` : This will run the script `list` and save the process output to titan_status table.
+- `curl http://127.0.0.1:5002/scripts/status/disk/` : This will return the script execution status
 
-# Improvements
-- We would need to identify and authenticate the user before allowing him to execute.
-- Before a user submits a script, it would need to check if the script already exists. If it does, we would need to increase the version counter and update the script column. Also have created_at and modified_at column in the scripts tables
-- Before we execute a script, it would be better to check the if it is already inprogress and terminate/queue the reqeust.
+### Example post data
+- `curl --header "Content-Type: application/json" --request POST --data '{ "script_name": "disk", "script_value": "df -h" }' http://localhost:5002/scripts/post/`
+- `curl --header "Content-Type: application/json" --request POST --data '{ "script_name": "python_version", "script_value": "python --version" }' http://localhost:5002/scripts/post/`
+- `curl --header "Content-Type: application/json" --request POST --data '{ "script_name": "count_lines", "script_value": "cat README.md | wc -l" }' http://localhost:5002/scripts/post/`
