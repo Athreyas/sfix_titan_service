@@ -76,7 +76,8 @@ We will needs to create a virtualenv, activate the environment, install all the 
 > This application has been developed using `Python 3.9.1` version.
 
 ## Steps to launch the application
-- Download the tar file and unzip it. Navigate into `sfix_titan_service` directory.
+- Clone the git repo or download the tar file and unzip it. 
+- Navigate into `sfix_titan_service` directory.
 - Create the virtual environment `python3 -m virtualenv venv`
 - Activate the virtual environment `source venv/bin/activate`
 - Now install all the dependencies `pip install -r requirements.txt`
