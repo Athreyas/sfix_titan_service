@@ -84,7 +84,7 @@ We will needs to create a virtualenv, activate the environment, install all the 
 > This will launch the application on port 5002 and can be accessed at http://127.0.0.1:5002
 
 ## Methods to access Titan service
-
+/
 
 
 # Improvements
