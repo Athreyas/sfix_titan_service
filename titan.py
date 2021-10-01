@@ -107,7 +107,7 @@ def run_script(name):
         process = subprocess.run(records[1], shell=True, check=True, stdout=subprocess.PIPE, universal_newlines=True)
 
         if not process.returncode:
-            update_script_output = "insert into titan_status (script_uuid, name, script_status ) values( {0}, '{1}', '{2}');".format(records[0], script_name, 'Completed')
+            update_script_output = "insert into titan_status (script_uuid, script_name, script_status ) values( {0}, '{1}', '{2}');".format(records[0], script_name, 'Completed')
             cursor.execute(update_script_output)
             connection.commit()
 

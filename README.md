@@ -27,12 +27,14 @@ This database currently has 2 tables
 
 ### Database Schema
 - Table titan_repo
+
   `CREATE TABLE IF NOT EXISTS "titan_repo"(
 uuid INTEGER PRIMARY KEY,
 script_name TEXT NOT NULL,
 script TEXT NOT NULL
 );`
 - Table titan_status
+
   `CREATE TABLE IF NOT EXISTS "titan_status"(
     uuid INTEGER,
     script_uuid INTEGER,
@@ -46,12 +48,32 @@ script TEXT NOT NULL
           ON UPDATE NO ACTION
 );`
 
+### Database Sample Output
+
+** titan_repo **
+|uuid|script_name|script                                        |
+|----|-----------|----------------------------------------------|
+|1   |list       |ls -ltr                                       |
+|2   |working_dir|pwd                                           |
+|3   |username   |id -F                                         |
+|4   |ip         |ifconfig en0 | grep 'inet ' | awk '{print $2}'|
+
+** titan_status **
+|uuid|script_uuid|run_timestamp      |script_name|script_status|
+|----|-----------|-------------------|-----------|-------------|
+|1   |   6       |2021-10-01 07:12:39|disk       |Completed    |
+|2   |   1       |2021-10-01 07:13:10|list       |Completed    |
+|3   |   2       |2021-10-01 07:13:18|working_dir|Completed    |
+|4   |   3       |2021-10-01 07:13:27|username   |Completed    |
+|5   |   4       |2021-10-01 07:13:49|ip         |Completed    |
+|6   |   4       |2021-10-01 07:26:09|ip         |Completed    |
+
 ---
 
-
-# Dependencies
-All the dependencies to run this service all provided with in the python virtual environment. One needs to activate the virtual environment by `source venv/bin/activate` below launching the applications.
-This application has been developed using `Python 3.8.7` version.
+# Configuration
+We need to have python *virtualenv* available inorder to create virtual environment and install dependencies. All the requried dependencies are provided as part of the *requirements.txt*.
+We will needs to create a virtualenv, activate the environment, install all the dependencies and then launch the application.
+> This application has been developed using `Python 3.9.1` version.
 
 ## Steps to launch the application
 - Activate the virtual environment. `source venv/bin/activate`
