@@ -50,7 +50,7 @@ script TEXT NOT NULL
 
 ### Database Sample Output
 
-** titan_repo **
+**titan_repo**
 |uuid|script_name|script                                        |
 |----|-----------|----------------------------------------------|
 |1   |list       |ls -ltr                                       |
@@ -58,7 +58,7 @@ script TEXT NOT NULL
 |3   |username   |id -F                                         |
 |4   |ip         |ifconfig en0 | grep 'inet ' | awk '{print $2}'|
 
-** titan_status **
+**titan_status**
 |uuid|script_uuid|run_timestamp      |script_name|script_status|
 |----|-----------|-------------------|-----------|-------------|
 |1   |   6       |2021-10-01 07:12:39|disk       |Completed    |
@@ -71,14 +71,21 @@ script TEXT NOT NULL
 ---
 
 # Configuration
-We need to have python *virtualenv* available inorder to create virtual environment and install dependencies. All the requried dependencies are provided as part of the *requirements.txt*.
+We need to have python ***virtualenv*** available inorder to create virtual environment and install dependencies. All the requried dependencies are provided as part of the ***requirements.txt***.
 We will needs to create a virtualenv, activate the environment, install all the dependencies and then launch the application.
 > This application has been developed using `Python 3.9.1` version.
 
 ## Steps to launch the application
-- Activate the virtual environment. `source venv/bin/activate`
-- Run the python command to launch the application. `python titan.py`
+- Download the tar file and unzip it. Navigate into `sfix_titan_service` directory.
+- Create the virtual environment `python3 -m virtualenv venv`
+- Activate the virtual environment `source venv/bin/activate`
+- Now install all the dependencies `pip install -r requirements.txt`
+- Launch the service `python titan.py`
 > This will launch the application on port 5002 and can be accessed at http://127.0.0.1:5002
+
+## Methods to access Titan service
+
+
 
 # Improvements
 - We would need to identify and authenticate the user before allowing him to execute.
