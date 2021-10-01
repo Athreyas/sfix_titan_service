@@ -96,6 +96,8 @@ Assuming this `curl` will be used, below are couple of commands to be used:
 - `curl http://127.0.0.1:5002/scripts/status/disk/` : This will return the script execution status
 
 ### Example post data
+- `curl --header "Content-Type: application/json" --request POST --data '{ "script_name": "hello", "script_value": "./scripts/hello_world.sh" }' http://localhost:5002/scripts/post/`
+- `curl --header "Content-Type: application/json" --request POST --data '{ "script_name": "portinuse", "script_value": "./scripts/ports_in_use.sh" }' http://localhost:5002/scripts/post/`
 - `curl --header "Content-Type: application/json" --request POST --data '{ "script_name": "disk", "script_value": "df -h" }' http://localhost:5002/scripts/post/`
 - `curl --header "Content-Type: application/json" --request POST --data '{ "script_name": "python_version", "script_value": "python --version" }' http://localhost:5002/scripts/post/`
 - `curl --header "Content-Type: application/json" --request POST --data '{ "script_name": "count_lines", "script_value": "cat README.md | wc -l" }' http://localhost:5002/scripts/post/`
