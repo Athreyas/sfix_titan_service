@@ -54,7 +54,7 @@ def fetch_script(name):
             record = list(records[0])
             return jsonify({'Name': name, 'Script': record[0]})
         else:
-            output="Requesting script '{0}'', doesn't exist in the DB".format(name)
+            output="Requesting script '{0}', doesn't exist in the DB".format(name)
             return jsonify(output)
 
     except sqlite3.Error as error:

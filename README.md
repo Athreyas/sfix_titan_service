@@ -6,14 +6,50 @@ This service has been developed using Python **Flask framework**. It is communic
 - Run a existing script
 - Get the status of the script execution
 
+## API endpoints
+As mentioned above this service provides various API endpoints and each has a specific function. Below are the details:
+
+|                        |Functionality                                 |Supported Methods |
+|------------------------|----------------------------------------------|------------------|
+|/                       |Home location                                 |GET               |
+|/scripts/               |This will list all the scripts present in DB  |GET               |
+|/scripts/<name>         |Prints the content of the scripts             |GET               |
+|/scripts/post/          |Submit new script and store it in DB          |POST, GET         |
+|/scripts/run/<name>     |Execute the script and update status          |GET               |
+|/scripts/status/<name>  |Obtain the status of latest execution         |GET               |
+
 ## Database service
 Currently this service has been developed using sqlite3 database. It is named as **nebula.db** and is present with in the same project folder. Inorder to connect to this database run: `sqlite3 nebule.db`
 
 This database currently has 2 tables
-- titan_scripts
-- scripts_status
+- titan_repo
+- titan_status
 
-## Dependencies
+### Database Schema
+- Table titan_repo
+  `CREATE TABLE IF NOT EXISTS "titan_repo"(
+uuid INTEGER PRIMARY KEY,
+script_name TEXT NOT NULL,
+script TEXT NOT NULL
+);`
+- Table titan_status
+  `CREATE TABLE IF NOT EXISTS "titan_status"(
+    uuid INTEGER,
+    script_uuid INTEGER,
+    run_timestamp datetime default current_timestamp,
+    script_name TEXT NOT NULL,
+    script_status TEXT,
+    PRIMARY KEY (uuid),
+    FOREIGN KEY (script_uuid)
+      REFERENCES titan_scripts (uuid)
+          ON DELETE CASCADE
+          ON UPDATE NO ACTION
+);`
+
+---
+
+
+# Dependencies
 All the dependencies to run this service all provided with in the python virtual environment. One needs to activate the virtual environment by `source venv/bin/activate` below launching the applications.
 This application has been developed using `Python 3.8.7` version.
 
@@ -22,7 +58,7 @@ This application has been developed using `Python 3.8.7` version.
 - Run the python command to launch the application. `python titan.py`
 > This will launch the application on port 5002 and can be accessed at http://127.0.0.1:5002
 
-## Improvements
+# Improvements
 - We would need to identify and authenticate the user before allowing him to execute.
 - Before a user submits a script, it would need to check if the script already exists. If it does, we would need to increase the version counter and update the script column. Also have created_at and modified_at column in the scripts tables
 - Before we execute a script, it would be better to check the if it is already inprogress and terminate/queue the reqeust.
