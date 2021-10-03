@@ -101,7 +101,7 @@ Assuming this `curl` will be used, below are couple of commands to be used:
     Input data is provided as json. Example: `{ "name": "disk", "command": "df -h" }`
 - `curl --request POST -F "file=@repo/hello_world.sh" http://localhost:5002/scripts/upload/` : This will upload new script and update the database.
 
-    Input data is provided as file attachemt. Example: `-F "file=@repo/hello_world.sh"`
+    Input data is provided as file attachemt. Example: `-F "file=@repo/hello_world.sh"`. The file attachment is uploaded into `upload` folder of the project. Only support file attachments are .sh and .py
 - `curl http://127.0.0.1:5002/scripts/run/list/` : This will run the script `list` and save the process output to titan_status table.
 - `curl http://127.0.0.1:5002/scripts/status/disk/` : This will return the script execution status
 
