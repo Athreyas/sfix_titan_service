@@ -5,6 +5,7 @@
 - There is no user authentication and authorization.
 - Have not developed the Web UI for this application.
 - We could use the local database storage to store the script information.
+- Negative usecases are also handled.
 
 ## Approach to solve
 I choose Flask framework to build this application and have used the sqlite database for the local storage.
@@ -22,3 +23,6 @@ Included API endpoints to use GET and POST method. A new script is submitted usi
 
 ## Duration to complete
 I was able to spend 1 hour over 4 days and complete the project.
+
+## Learning
+- When a script is submitted, permissions are reset, we would need to explicitly set executable permissions

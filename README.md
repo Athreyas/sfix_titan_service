@@ -14,7 +14,7 @@ As mentioned above this service provides various API endpoints and each has a sp
 |/                       |Home location                                 |GET               |
 |/scripts/               |This will list all the scripts present in DB  |GET               |
 |/scripts/<name>         |Prints the content of the scripts             |GET               |
-|/scripts/post/          |Submit new script and store it in DB          |POST, GET         |
+|/scripts/upload/        |Submit new script and store it in DB          |POST, GET         |
 |/scripts/run/<name>     |Execute the script and update status          |GET               |
 |/scripts/status/<name>  |Obtain the status of latest execution         |GET               |
 
@@ -76,7 +76,7 @@ We will needs to create a virtualenv, activate the environment, install all the 
 > This application has been developed using `Python 3.9.1` version.
 
 ## Steps to launch the application
-- Clone the git repo or download the tar file and unzip it. 
+- Clone the git repo or download the tar file and unzip it.
 - Navigate into `sfix_titan_service` directory.
 - Create the virtual environment `python3 -m virtualenv venv`
 - Activate the virtual environment `source venv/bin/activate`
@@ -90,15 +90,15 @@ Assuming this `curl` will be used, below are couple of commands to be used:
 - `curl http://127.0.0.1:5002/` : This will display the landing/home page.
 - `curl http://127.0.0.1:5002/scripts/` : This will list all the scripts present in the DB currently.
 - `curl http://127.0.0.1:5002/scripts/list/` : This will return ***list*** script information.
-- `curl --header "Content-Type: application/json" --request POST --data '{ "script_name": "list", "script_value": "ls -ltr" }' http://localhost:5002/scripts/post/` : This will post new script and update the database.
+- `curl --header "Content-Type: application/json" --request POST --data '{ "script_name": "list", "script_value": "ls -ltr" }' http://localhost:5002/scripts/upload/` : This will upload new script and update the database.
 
     Input data is provided as json. Example: `{ "script_name": "disk", "script_value": "df -h" }`
 - `curl http://127.0.0.1:5002/scripts/run/list/` : This will run the script `list` and save the process output to titan_status table.
 - `curl http://127.0.0.1:5002/scripts/status/disk/` : This will return the script execution status
 
 ### Example post data
-- `curl --header "Content-Type: application/json" --request POST --data '{ "script_name": "hello", "script_value": "./scripts/hello_world.sh" }' http://localhost:5002/scripts/post/`
-- `curl --header "Content-Type: application/json" --request POST --data '{ "script_name": "portinuse", "script_value": "./scripts/ports_in_use.sh" }' http://localhost:5002/scripts/post/`
-- `curl --header "Content-Type: application/json" --request POST --data '{ "script_name": "disk", "script_value": "df -h" }' http://localhost:5002/scripts/post/`
-- `curl --header "Content-Type: application/json" --request POST --data '{ "script_name": "python_version", "script_value": "python --version" }' http://localhost:5002/scripts/post/`
-- `curl --header "Content-Type: application/json" --request POST --data '{ "script_name": "count_lines", "script_value": "cat README.md | wc -l" }' http://localhost:5002/scripts/post/`
+- `curl --request POST -F "file=@scripts/hello_world.sh" http://localhost:5002/scripts/upload/`
+- `curl --request POST -F "file=@scripts/ports_in_use.sh" http://localhost:5002/scripts/upload/`
+- `curl --header "Content-Type: application/json" --request POST --data '{ "script_name": "disk", "script_value": "df -h" }' http://localhost:5002/scripts/upload/`
+- `curl --header "Content-Type: application/json" --request POST --data '{ "script_name": "python_version", "script_value": "python --version" }' http://localhost:5002/scripts/upload/`
+- `curl --header "Content-Type: application/json" --request POST --data '{ "script_name": "count_lines", "script_value": "cat README.md | wc -l" }' http://localhost:5002/scripts/upload/`
