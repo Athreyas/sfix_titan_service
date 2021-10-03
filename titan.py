@@ -51,7 +51,7 @@ def list_script_names():
         return jsonify(data)
 
     except sqlite3.Error as error:
-        return jsonify("Failed to read data from table".format(error))
+        return jsonify("Failed to read data from table  {}".format(error))
 
     finally:
         cursor.close()
@@ -85,7 +85,7 @@ def fetch_script(script_name):
             return jsonify(output)
 
     except sqlite3.Error as error:
-        return jsonify("Failed to read data from table".format(error))
+        return jsonify("Failed to read data from table  {}".format(error))
 
     finally:
         cursor.close()
@@ -164,7 +164,7 @@ def run_script(script_name):
             return jsonify(output)
 
     except sqlite3.Error as error:
-        return jsonify("Failed to read data from table".format(error))
+        return jsonify("Failed to read data from table {}".format(error))
 
     finally:
         cursor.close()
@@ -188,7 +188,7 @@ def get_script_status(script_name):
             return jsonify(output)
 
     except sqlite3.Error as error:
-        return jsonify("Failed to read data from table".format(error))
+        return jsonify("Failed to read data from table {}".format(error))
 
     finally:
         cursor.close()
