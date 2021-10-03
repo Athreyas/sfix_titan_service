@@ -60,7 +60,7 @@ This database currently has 2 tables
 |1   |list       |ls -ltr                                       |0        |               |
 |2   |working_dir|pwd                                           |0        |               |
 |3   |username   |id -F                                         |0        |               |
-|4   |ip         |`"ifconfig en0 | grep 'inet ' | awk '{print $2}'"`|0        |               |
+|4   |ip         |`ifconfig en0 \| grep 'inet ' \| awk '{print $2}'`|0        |               |
 |5   |hello_world|./upload/hello_world.sh                       |1        |hello_world.sh |
 
 
